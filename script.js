@@ -1,7 +1,7 @@
 // Загрузка данных из JSON файла
 async function loadProducts() {
     try {
-        const response = await fetch('products.json');
+        const response = await fetch('data/vkusvill/forHair.json');
         if (!response.ok) {
             throw new Error('Не удалось загрузить данные');
         }
