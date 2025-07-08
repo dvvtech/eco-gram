@@ -175,7 +175,18 @@ function showProductDetail(productId) {
         <span style="margin-left: 5px;">${product.Score}/10</span>
     `;
     document.getElementById('detail-description').textContent = product.Comment;
-    document.getElementById('detail-ingredients').textContent = product.Ingredients;
+    
+    // Обновленный блок для отображения состава с комментарием
+    const ingredientsHTML = `
+        <h4>Полный состав:</h4>
+        <div class="ingredients-text">${product.Ingredients}</div>
+        <div class="ingredients-comment">
+            <h4>Комментарий к составу:</h4>
+            <p>${product.Comment}</p>
+        </div>
+    `;
+    document.getElementById('detail-ingredients').innerHTML = ingredientsHTML;
+    
     document.getElementById('detail-image').src = product.ImageUrl;
     document.getElementById('detail-image').alt = product.Title;
     document.getElementById('detail-link').href = product.ProductUrl;

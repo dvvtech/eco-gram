@@ -625,3 +625,31 @@ footer {
     margin: 0 8px;
     color: #999;
 }
+
+
+.ingredients-text {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    white-space: pre-line;
+}
+
+.ingredients-comment {
+    background-color: #f8f5f2;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+    border-left: 3px solid var(--accent);
+}
+
+.ingredients-comment h4 {
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+
+.ingredients-comment p {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #555;
+}
