@@ -174,16 +174,13 @@ function showProductDetail(productId) {
         ${'★'.repeat(Math.floor(product.Score / 2))}${'☆'.repeat(5 - Math.floor(product.Score / 2))}
         <span style="margin-left: 5px;">${product.Score}/10</span>
     `;
-    document.getElementById('detail-description').textContent = product.Comment;
+    document.getElementById('detail-description').innerHTML = 
+    '<strong style="color: #2d3748; font-weight: 600;">Комментарий к составу:</strong> ' + product.Comment;
     
     // Обновленный блок для отображения состава с комментарием
     const ingredientsHTML = `
         <h4>Полный состав:</h4>
-        <div class="ingredients-text">${product.Ingredients}</div>
-        <div class="ingredients-comment">
-            <h4>Комментарий к составу:</h4>
-            <p>${product.Comment}</p>
-        </div>
+        <div class="ingredients-text">${product.Ingredients}</div>        
     `;
     document.getElementById('detail-ingredients').innerHTML = ingredientsHTML;
     
