@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <header>
         <div class="container">
@@ -26,16 +28,17 @@
             </div>
         </div>
     </header>
-    
+
     <section class="hero">
         <div class="container">
             <h1>Профессиональный уход за волосами</h1>
-            <p>Откройте для себя премиальные средства для волос с натуральными ингредиентами и инновационными формулами</p>
+            <p>Откройте для себя премиальные средства для волос с натуральными ингредиентами и инновационными формулами
+            </p>
             <a href="#" class="btn" onclick="showCategory('Шампунь')">Каталог</a>
             <a href="#" class="btn btn-outline">О нас</a>
         </div>
     </section>
-    
+
     <section class="categories">
         <div class="container">
             <div class="section-title">
@@ -46,11 +49,12 @@
             </div>
         </div>
     </section>
-    
+
     <section class="products">
         <div class="container">
             <div id="products-container" class="products-container">
-                <a href="#" class="back-btn" onclick="showHomePage()"><i class="fas fa-arrow-left"></i> Назад к категориям</a>
+                <a href="#" class="back-btn" onclick="showHomePage()"><i class="fas fa-arrow-left"></i> Назад к
+                    категориям</a>
                 <div class="breadcrumbs">
                     <a href="#" onclick="showHomePage()">Главная</a>
                     <span class="separator">/</span>
@@ -58,12 +62,16 @@
                 </div>
                 <div class="filters">
                     <div class="filter-group">
-                        <h4>Цена</h4>
+                        <h4>Сортировка</h4>
                         <div class="filter-options">
-                            <label><input type="checkbox" name="price" value="0-300"> До 300 ₽</label>
-                            <label><input type="checkbox" name="price" value="300-500"> 300-500 ₽</label>
-                            <label><input type="checkbox" name="price" value="500-1000"> 500-1000 ₽</label>
-                            <label><input type="checkbox" name="price" value="1000+"> От 1000 ₽</label>
+                            <label><input type="radio" name="sort" value="score-desc" checked> По оценке (высокая →
+                                низкая)</label>
+                            <label><input type="radio" name="sort" value="score-asc"> По оценке (низкая →
+                                высокая)</label>
+                            <label><input type="radio" name="sort" value="price-desc"> По цене (дорогие →
+                                дешевые)</label>
+                            <label><input type="radio" name="sort" value="price-asc"> По цене (дешевые →
+                                дорогие)</label>
                         </div>
                     </div>
                     <div class="filter-group">
@@ -78,7 +86,8 @@
                         <h4>Ингредиенты</h4>
                         <div class="filter-options">
                             <label><input type="checkbox" name="ingredient" value="keratin"> Кератин</label>
-                            <label><input type="checkbox" name="ingredient" value="hyaluronic"> Гиалуроновая кислота</label>
+                            <label><input type="checkbox" name="ingredient" value="hyaluronic"> Гиалуроновая
+                                кислота</label>
                             <label><input type="checkbox" name="ingredient" value="natural"> Натуральные масла</label>
                         </div>
                     </div>
@@ -87,9 +96,10 @@
                     <!-- Товары будут добавлены через JavaScript -->
                 </div>
             </div>
-            
+
             <div id="product-detail" class="product-detail">
-                <a href="#" class="back-btn" onclick="showProductsPage()"><i class="fas fa-arrow-left"></i> Назад к товарам</a>
+                <a href="#" class="back-btn" onclick="showProductsPage()"><i class="fas fa-arrow-left"></i> Назад к
+                    товарам</a>
                 <div class="breadcrumbs">
                     <a href="#" onclick="showHomePage()">Главная</a>
                     <span class="separator">/</span>
@@ -121,7 +131,7 @@
             </div>
         </div>
     </section>
-    
+
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -169,7 +179,8 @@
             </div>
         </div>
     </footer>
-    
+
     <script src="script.js"></script>
 </body>
+
 </html>

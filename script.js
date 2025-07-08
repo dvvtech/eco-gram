@@ -46,6 +46,38 @@ function renderCategories(products) {
     }).join('');
 }
 
+// Отображение товаров с сортировкой по оценке
+function renderProducts(products) {
+    const productsGrid = document.getElementById('products-grid');
+    
+    // Сортируем товары по оценке (Score) в порядке убывания
+    const sortedProducts = [...products].sort((a, b) => b.Score - a.Score);
+    
+    productsGrid.innerHTML = sortedProducts.map(product => `
+        <div class="product-card fade-in" onclick="showProductDetail(${product.Id})">
+            ${product.Score >= 8 ? '<div class="product-badge">Топ продаж</div>' : ''}
+            <div class="product-img">
+                <img src="${product.ImageUrl}" alt="${product.Title}">
+            </div>
+            <div class="product-info">
+                <h3 class="product-title">${product.Title}</h3>
+                <div class="product-price">${product.Price} ₽</div>
+                <div class="product-rating">
+                    <div class="stars">
+                        ${'★'.repeat(Math.floor(product.Score / 2))}${'☆'.repeat(5 - Math.floor(product.Score / 2))}
+                    </div>
+                    <div class="rating-value">${product.Score}/10</div>
+                </div>
+                <div class="product-description">${product.Comment}</div>
+                <div class="product-actions">
+                    <a href="${product.ProductUrl}" class="btn btn-primary btn-sm" target="_blank">Купить</a>
+                    <a href="#" class="btn btn-sm">Подробнее</a>
+                </div>
+            </div>
+        </div>
+    `).join('');
+}
+
 // Настройка обработчиков событий
 function setupEventListeners(products) {
     // Фильтрация товаров
@@ -54,13 +86,31 @@ function setupEventListeners(products) {
     });
 }
 
-// Фильтрация товаров
+// Фильтрация и сортировка товаров
 function filterProducts(products) {
     const category = document.getElementById('current-category').textContent;
-    const filteredProducts = products.filter(p => p.Type === category);
+    let filteredProducts = products.filter(p => p.Type === category);
     
-    // Применение фильтров
-    // Здесь можно добавить логику фильтрации по цене, рейтингу и т.д.
+    // Получаем выбранный способ сортировки
+    const sortOption = document.querySelector('input[name="sort"]:checked').value;
+    
+    // Применяем сортировку
+    switch(sortOption) {
+        case 'score-desc':
+            filteredProducts.sort((a, b) => b.Score - a.Score);
+            break;
+        case 'score-asc':
+            filteredProducts.sort((a, b) => a.Score - b.Score);
+            break;
+        case 'price-desc':
+            filteredProducts.sort((a, b) => parseFloat(b.Price) - parseFloat(a.Price));
+            break;
+        case 'price-asc':
+            filteredProducts.sort((a, b) => parseFloat(a.Price) - parseFloat(b.Price));
+            break;
+        default:
+            filteredProducts.sort((a, b) => b.Score - a.Score);
+    }
     
     renderProducts(filteredProducts);
 }
