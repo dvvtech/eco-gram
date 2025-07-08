@@ -84,6 +84,11 @@ function setupEventListeners(products) {
     document.querySelectorAll('.filters input').forEach(input => {
         input.addEventListener('change', () => filterProducts(products));
     });
+    
+    // Обработка сортировки
+    document.querySelectorAll('input[name="sort"]').forEach(radio => {
+        radio.addEventListener('change', () => filterProducts(products));
+    });
 }
 
 // Фильтрация и сортировка товаров
@@ -91,11 +96,25 @@ function filterProducts(products) {
     const category = document.getElementById('current-category').textContent;
     let filteredProducts = products.filter(p => p.Type === category);
     
-    // Получаем выбранный способ сортировки
-    const sortOption = document.querySelector('input[name="sort"]:checked').value;
+    // Убедимся, что radio-кнопка выбрана (если нет, выбираем по умолчанию)
+    const sortRadios = document.getElementsByName('sort');
+    let selectedSort = 'score-desc';
+    
+    for (const radio of sortRadios) {
+        if (radio.checked) {
+            selectedSort = radio.value;
+            break;
+        }
+    }
+    
+    // Если ничего не выбрано, выбираем сортировку по оценке по умолчанию
+    if (!selectedSort) {
+        selectedSort = 'score-desc';
+        sortRadios[0].checked = true;
+    }
     
     // Применяем сортировку
-    switch(sortOption) {
+    switch(selectedSort) {
         case 'score-desc':
             filteredProducts.sort((a, b) => b.Score - a.Score);
             break;
@@ -174,7 +193,11 @@ function showCategory(category) {
     document.getElementById('current-category').textContent = category;
     document.getElementById('products-container').classList.add('active');
     document.getElementById('product-detail').classList.remove('active');
-    renderProducts(filteredProducts);
+    
+    // Устанавливаем сортировку по умолчанию
+    document.querySelector('input[value="score-desc"]').checked = true;
+    
+    filterProducts(products); // Применяем фильтрацию и сортировку
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
